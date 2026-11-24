@@ -1,0 +1,24 @@
+### Probar la API desde VS Code con la extensión REST Client (clic en "Send Request")
+
+@base = http://localhost:4000/api
+
+### 1. Iniciar sesión (copia el token de la respuesta y pégalo abajo)
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{ "email": "amejia@consultorio.hn", "password": "clave1234" }
+
+###
+@token = PEGA_AQUI_EL_TOKEN
+
+### 2. Agenda de hoy
+GET {{base}}/citas
+Authorization: Bearer {{token}}
+
+### 3. Pacientes
+GET {{base}}/pacientes?q=her
+Authorization: Bearer {{token}}
+
+### 4. Seguimientos pendientes
+GET {{base}}/seguimientos?estado=pendiente
+Authorization: Bearer {{token}}

@@ -1,0 +1,30 @@
+# Oracle Database para desarrollo, SOLO si no tienes Oracle instalado en la máquina.
+# Si ya tienes Oracle XE instalado (lo normal cuando usas SQL Developer), no hace
+# falta este archivo: usa tu instalación local y configura backend/.env.
+#
+#   docker compose up -d        (la primera vez tarda varios minutos en crear la base)
+#   docker compose logs -f db   (espera el mensaje "DATABASE IS READY TO USE!")
+#
+# Con esta base, en backend/.env hay que poner:
+#   ORACLE_CONNECT=localhost:1521/FREEPDB1
+#   ORACLE_CLIENT_LIB=        <- vacío: al ser Oracle 23ai sirve el modo "thin"
+services:
+  db:
+    image: gvenzl/oracle-free:23-slim
+    restart: unless-stopped
+    environment:
+      ORACLE_PASSWORD: oracle            # contraseña de SYS y SYSTEM
+      APP_USER: consultorio              # usuario de la aplicación
+      APP_USER_PASSWORD: consultorio
+      TZ: America/Tegucigalpa
+    ports:
+      - "1521:1521"
+    volumes:
+      - datos:/opt/oracle/oradata
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 20s
+      timeout: 10s
+      retries: 30
+volumes:
+  datos:

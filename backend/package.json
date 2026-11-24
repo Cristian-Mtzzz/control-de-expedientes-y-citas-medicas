@@ -1,0 +1,19 @@
+{
+  "name": "consultorio-server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch-path=./src --env-file=.env src/index.js",
+    "start": "node --env-file=.env src/index.js",
+    "db:init": "node --env-file=.env db/init.js",
+    "db:admin": "node --env-file=.env db/crear_admin.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "oracledb": "^6.7.0"
+  }
+}

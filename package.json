@@ -1,0 +1,14 @@
+{
+  "name": "consultorio",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": ["backend", "frontend"],
+  "scripts": {
+    "dev": "concurrently -n api,web -c cyan,green \"npm run dev -w backend\" \"npm run dev -w frontend\"",
+    "db:init": "npm run db:init -w backend",
+    "build": "npm run build -w frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
