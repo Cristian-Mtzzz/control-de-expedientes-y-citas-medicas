@@ -1,4 +1,4 @@
-# Consultorio multimédico
+# Consultorio medico
 
 Aplicación web para administrar pacientes, citas médicas, atención clínica y
 seguimientos en un consultorio con varios médicos.
